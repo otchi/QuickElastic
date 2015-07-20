@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fastElastic host="http//localhost:9200">
+
+	<indexes>
+		<index name="myjdbc">
+			<type name="mytype"/>
+			<type name="doc"/>
+		</index>
+		<index name="myindex">
+			<type name="mytype"/>
+			<type name="doc"/>
+		</index>
+	</indexes>
+	
+	<request class="com.edifixio.amine.testBean.MyRequest">
+		<search nameInBean="mainSearch">
+			<query nameOfField="company" kindOfSearch="match" operator="and"/>
+		</search>
+	</request>
+	
+	<responce class="com.edifixio.amine.testBean.MyResponse">
+		<mapping nameInBean="company" nameInIndex="company"/>
+		<mapping nameInBean="pdg" nameInIndex="pdg"/>
+		<mapping nameInBean="country" nameInIndex="country"/>
+	</responce>
+	
+	<facets class="com.edifixio.amine.testBean.FacetsBean">
+		<faceting nameInMap="paysfacet" nameInIndex="country" queryRequest="term"/>
+		<faceting nameInMap="ccfacet" nameInIndex="cc" queryRequest="term"/>
+	</facets>
+
+</fastElastic>
